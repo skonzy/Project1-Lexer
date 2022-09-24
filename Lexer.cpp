@@ -5,10 +5,10 @@ Lexer::Lexer() {
 }
 
 Lexer::~Lexer() {
-    for (int i = 0; i < automata.size(); i++) {
+    for (unsigned int i = 0; i < automata.size(); i++) {
         delete automata[i];
     }
-    for (int i = 0; i < tokens.size(); i++) {
+    for (unsigned int i = 0; i < tokens.size(); i++) {
         delete tokens[i];
     }
 }
@@ -37,11 +37,11 @@ void Lexer::Run(std::string& input) {
     string currString = input;
 
     while (currString.size() > 0) {
-        int maxRead = 0;
+        unsigned int maxRead = 0;
         Automaton* maxAutomaton = automata.at(0);
 
-        for (int i = 0; i < automata.size(); i++) {
-            int inputRead = automata.at(i)->Start(currString);
+        for (unsigned int i = 0; i < automata.size(); i++) {
+            unsigned int inputRead = automata.at(i)->Start(currString);
             if (inputRead > maxRead) {
                 maxRead = inputRead;
                 maxAutomaton = automata.at(i);
@@ -52,7 +52,7 @@ void Lexer::Run(std::string& input) {
             Token* newToken = maxAutomaton->CreateToken(strVal, lineNumber);
             tokens.push_back(newToken);
 
-            for (int i = 0; i < maxRead; i++) {
+            for (unsigned int i = 0; i < maxRead; i++) {
                 if (currString[i] == '\n') {
                     lineNumber++;
                 }
@@ -77,7 +77,7 @@ void Lexer::Run(std::string& input) {
 
 string Lexer::toString() {
     string str = "";
-    for (int i = 0; i < tokens.size(); i++) {
+    for (unsigned int i = 0; i < tokens.size(); i++) {
         str += tokens.at(i)->toString() + "\n";
     }
     str += "Total Tokens = " + to_string(tokens.size());

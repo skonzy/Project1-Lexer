@@ -9,7 +9,7 @@ void IdAutomaton::S0(const std::string &input) {
         inputRead++;
     }
     if (isId) {
-        for (int i = 1; i < input.size(); i++) {
+        for (unsigned int i = 1; i < input.size(); i++) {
             if (isalnum(input[i])) {
                 inputRead++;
             } else {

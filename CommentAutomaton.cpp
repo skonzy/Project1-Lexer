@@ -15,7 +15,7 @@ void CommentAutomaton::S0(const string& input) {
         inputRead++;
     }
     if (multiLineComment) {
-        for (int i = 1; i < input.size(); i++) {
+        for (unsigned int i = 1; i < input.size(); i++) {
             if (input[i] == '\n') {
                 break;
             } else {
@@ -25,7 +25,7 @@ void CommentAutomaton::S0(const string& input) {
     } else if (blockComment) {
         inputRead++;
         bool badComment = true;
-        for (int i = 2; i < (input.size()); i++) {
+        for (unsigned int i = 2; i < (input.size()); i++) {
             inputRead++;
             if (input[i] == '|') {
                 if ((i < (input.size() - 1)) && !(input[(i + 1)] == '#')) {
